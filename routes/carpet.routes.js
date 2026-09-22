@@ -7,12 +7,18 @@ const { model } = require("mongoose");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
-router.get("/", (req, res) => {
-  res.render("carpetList.ejs");
+router.get("/", async (req, res) => {
+  try {const AllCarpets  = await Carpet.find()
+  res.render("carpetList.ejs",{AllCarpets});}
+  catch(error){
+    console.error(error);
+    res.send(error.message);
+
+  }
 });
 
 router.get("/new", isAdmin, (req, res) => {
-  res.render("createCarpet.ejs");
+  res.render("createCarpet.ejs",);
 });
 
 router.post("/", isAdmin, async (req, res) => {
