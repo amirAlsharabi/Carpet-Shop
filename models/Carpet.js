@@ -46,7 +46,7 @@ const carpetSchema = new mongoose.Schema(
     },
     stockQuantity: {
       type: Number,
-      default: 10,
+      default: 5,
     },
     isAvailable: {
       type: Boolean,

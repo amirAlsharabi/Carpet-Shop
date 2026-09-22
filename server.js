@@ -15,8 +15,7 @@ const passUserToView = require("./middleware/pass-user-to-view.js");
 // routes Imports
 const authController = require("./routes/auth.routes.js");
 const indexController = require("./routes/index.routes.js");
-
-
+const carpetRotes=require("./routes/carpet.routes.js");
 // Middleware
 app.use(express.static('public')) // my app will serve all static files from public folder
 app.use(express.urlencoded({ extended: false }));
@@ -53,7 +52,7 @@ app.use(passUserToView)
 // Routes go here
 app.use('/auth',authController)
 app.use('/',indexController)
-
+app.use('/carpets',carpetRotes)
 
 
 

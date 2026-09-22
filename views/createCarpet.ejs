@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>create the Carpet</title>
+  </head>
+  <body>
+    <h1>Enter the carpet info</h1>
+
+    <form action="/carpets" method="post">
+      <label for="name">name:</label>
+      <input name="name" id="name" type="text"/>
+
+      <label for="type">Type:</label>
+      <select name="type" id="type" required>
+        <option value="" disabled selected>-- Select Carpet Type --</option>
+        <option value="custom_meter">Custom Cut (By Meter)</option>
+        <option value="ready_made">Ready-made Rug</option>
+      </select>
+
+      <label for="origin">origin:</label>
+      <input name="origin" id="origin" type="text" />
+
+      <label for="thickness">thickness:</label>
+      <input name="thickness" id="thickness" type="number" />
+
+      <label for="material">material:</label>
+      <input name="material" id="size" type="text" />
+
+      <label for="fixedLength">fixedLength:</label>
+      <input name="fixedLength" id="fixedLength" type="number" />
+
+       <label for="fixedWidth">fixedWidth:</label>
+      <input name="fixedWidth" id="fixedWidth" type="number" />
+
+      <label for="imageUrl">imageUrl:</label>
+      <input name="imageUrl" id="imageUrl" type="text" />
+
+      <label for="stockQuantity">stockQuantity:</label>
+      <input name="stockQuantity" id="stockQuantity" type="number" />
+
+      <label for="price">price:</label>
+      <input name="price" id="price" type="number" />
+
+      <label for="isAvailable">is Available:</label>
+      <input name="isAvailable" id="isAvailable" type="checkbox" />
+
+      <button>Create Carpet</button>
+    </form>
+   
+  </body>
+</html>

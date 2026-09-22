@@ -9,12 +9,19 @@
     <%- include('../partials/navbar') %>
     <h1>Create a new account!</h1>
     <form action="/auth/sign-up" method="post">
+
       <label for="username">Username:</label>
       <input type="text" name="username" id="username" />
+
+      <label for="phone">phone:</label>
+      <input type="number" name="phone" id="phone" />
+
       <label for="password">Password:</label>
       <input type="password" name="password" id="password" />
+
       <label for="confirmPassword">Confirm Password:</label>
       <input type="password" name="confirmPassword" id="confirmPassword" />
+
       <button type="submit">Sign up</button>
     </form>
   </body>
