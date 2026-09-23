@@ -29,8 +29,11 @@ router.post("/", isAdmin, upload.single("image"), async (req, res) => {
     if (req.file) {
       imageUrl = `/uploads/${req.file.filename}`;
     }
-    const defaultValue =
+    else{
+    const imageUrl =
       "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80";
+
+    }
     const createCarpet = await Carpet.create({
       name: req.body.name,
       type: req.body.type,
@@ -39,7 +42,7 @@ router.post("/", isAdmin, upload.single("image"), async (req, res) => {
       material: req.body.material,
       fixedLength: req.body.fixedLength,
       fixedWidth: req.body.fixedWidth,
-      imageUrl: req.body.imageUrl || defaultValue,
+      imageUrl: imageUrl,
       stockQuantity: req.body.stockQuantity,
       price: req.body.price,
       isAvailable: req.body.isAvailable === "on",
