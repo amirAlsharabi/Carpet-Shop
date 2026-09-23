@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>carpet list</title>
-  </head>
-  <body>
-    <h1>Carpet List</h1>
-    
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>carpet list</title>
+</head>
+
+<body>
+  <h1>Carpet List</h1>
+  <div class="carpet list">
+    <% for(let oneCarpet of AllCarpets){ %>
+      <div id="imageCarpet">
+        <img src="<%= oneCarpet.imageUrl %>" alt="<%= oneCarpet.name %>">
+      </div>
+      <div id="nameOftheCarpet">
+        <p>Name:<%= oneCarpet.name %>
+        </p>
+      </div>
+      <div id="type"></div>
+      <p>type:<%= oneCarpet.type %>
+      </p>
+  </div>
+  <div id="origin">
+    <p>origin:<%= oneCarpet.origin %>
+    </p>
+  </div>
+  <div id="thickness">
+    <p>thickness:<%= oneCarpet.thickness %>
+    </p>
+  </div>
+  <div id="material">
+    <p>material:<%= oneCarpet.material %>
+    </p>
+  </div>
+  <div id="fixedLength">
+    <p>fixed Length:<%= oneCarpet.fixedLength %>
+    </p>
+  </div>
+  <div id="fixedWidth">
+    <p>fixed Width:<%= oneCarpet.thickness %>
+    </p>
+  </div>
+  <div id="stockQuantity">
+    <p>stock Quantity:<%= oneCarpet.stockQuantity %>
+    </p>
+  </div>
+  <div id="price">
+    <p>price:<%= oneCarpet.price %>
+    </p>
+  </div>
+  <div id="isAvailable">
+    <p>is Available:<%= oneCarpet.isAvailable %>
+    </p>
+  </div>
+
+
+  <% } %>
+    </div>
+</body>
+
 </html>

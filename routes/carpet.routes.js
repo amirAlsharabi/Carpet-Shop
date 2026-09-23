@@ -8,21 +8,22 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 router.get("/", async (req, res) => {
-  try {const AllCarpets  = await Carpet.find()
-  res.render("carpetList.ejs",{AllCarpets});}
-  catch(error){
+  try {
+    const AllCarpets = await Carpet.find();
+    res.render("carpetList.ejs", { AllCarpets });
+  } catch (error) {
     console.error(error);
     res.send(error.message);
-
   }
 });
 
 router.get("/new", isAdmin, (req, res) => {
-  res.render("createCarpet.ejs",);
+  res.render("createCarpet.ejs");
 });
 
 router.post("/", isAdmin, async (req, res) => {
   try {
+    const defaultValue = 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80'
     const createCarpet = await Carpet.create({
       name: req.body.name,
       type: req.body.type,
@@ -31,7 +32,7 @@ router.post("/", isAdmin, async (req, res) => {
       material: req.body.material,
       fixedLength: req.body.fixedLength,
       fixedWidth: req.body.fixedWidth,
-      imageUrl: req.body.imageUrl,
+      imageUrl: req.body.imageUrl || defaultValue,
       stockQuantity: req.body.stockQuantity,
       price: req.body.price,
       isAvailable: req.body.isAvailable === "on",
