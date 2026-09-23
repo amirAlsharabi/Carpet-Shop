@@ -44,4 +44,9 @@ router.post("/", isAdmin, async (req, res) => {
   }
 });
 
+router.get('/:carpetsId', isAdmin,async (req,res)=>{
+    const foundCarpet = await Carpet.findOne({_id:req.params.carpetsId}).populate()
+    res.render('Carpets-details.ejs',{Carpet: foundCarpet})
+})
+
 module.exports = router;
