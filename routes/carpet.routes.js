@@ -6,6 +6,8 @@ const isAdmin = require("../middleware/is-admin");
 const { model } = require("mongoose");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const upload = require("../middleware/upload");
+
 
 router.get("/", async (req, res) => {
   try {
@@ -21,8 +23,12 @@ router.get("/new", isAdmin, (req, res) => {
   res.render("createCarpet.ejs");
 });
 
-router.post("/", isAdmin, async (req, res) => {
+router.post("/", isAdmin, upload.single("image"), async (req, res) => {
   try {
+    let imageUrl;
+    if (req.file) {
+      imageUrl = `/uploads/${req.file.filename}`;
+    }
     const defaultValue =
       "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80";
     const createCarpet = await Carpet.create({
