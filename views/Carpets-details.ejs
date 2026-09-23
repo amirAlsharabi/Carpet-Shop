@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpets details</title>
+</head>
+
+<body>
+    <h1>Carpets Details</h1>
+    <div class="carpet list">
+        <div id="imageCarpet">
+            <img src="<%= foundCarpet.imageUrl %>" alt="<%= foundCarpet.name %>">
+        </div>
+        <div id="nameOftheCarpet">
+            <p>Name:<%= foundCarpet.name %>
+            </p>
+        </div>
+        <div id="type"></div>
+        <p>type:<%= foundCarpet.type %>
+        </p>
+    </div>
+    <div id="origin">
+        <p>Origin:<%= foundCarpet.origin %>
+        </p>
+    </div>
+    <div id="thickness">
+        <p>Thickness:<%= foundCarpet.thickness %> MM
+        </p>
+    </div>
+    <div id="material">
+        <p>Material:<%= foundCarpet.material %>
+        </p>
+    </div>
+    <div id="fixedLength">
+        <p>Fixed Length:<%= foundCarpet.fixedLength %>
+        </p>
+    </div>
+    <div id="fixedWidth">
+        <p>Fixed Width:<%= foundCarpet.thickness %>
+        </p>
+    </div>
+    <div id="stockQuantity">
+        <p>Stock Quantity:<%= foundCarpet.stockQuantity %>
+        </p>
+    </div>
+    <div id="price">
+        <p>Price:<%= foundCarpet.price %>
+        </p>
+    </div>
+    <div id="isAvailable">
+        <p>Is Available:<%= foundCarpet.isAvailable ? "YES" : "NO" %>
+        </p>
+    </div>
+    <div id="CarpetsLink">
+    </div>
+    <br>
+    </div>
+
+     <a href="/carpets/<%= listing._id %>/edit">Edit Carpets</a>
+   
+</body>
+
+</html>

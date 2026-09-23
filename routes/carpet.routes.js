@@ -23,7 +23,8 @@ router.get("/new", isAdmin, (req, res) => {
 
 router.post("/", isAdmin, async (req, res) => {
   try {
-    const defaultValue = 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80'
+    const defaultValue =
+      "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80";
     const createCarpet = await Carpet.create({
       name: req.body.name,
       type: req.body.type,
@@ -44,9 +45,16 @@ router.post("/", isAdmin, async (req, res) => {
   }
 });
 
-router.get('/:carpetsId', isAdmin,async (req,res)=>{
-    const foundCarpet = await Carpet.findOne({_id:req.params.carpetsId}).populate()
-    res.render('Carpets-details.ejs',{Carpet: foundCarpet})
-})
+router.get("/:carpetsId", async (req, res) => {
+  const foundCarpet = await Carpet.findById(req.params.carpetsId).populate();
+  res.render("Carpets-details.ejs", { foundCarpet });
+});
+
+router.get("/:carpetsId/edit",isAdmin, async (req, res) => {
+  const foundCarpet = await Carpet.findById(req.params.carpetsId).populate();
+  res.render("Carpets-details.ejs", { foundCarpet });
+});
+
+
 
 module.exports = router;

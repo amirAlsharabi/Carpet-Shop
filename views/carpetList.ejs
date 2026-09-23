@@ -26,39 +26,16 @@
     <p>origin:<%= oneCarpet.origin %>
     </p>
   </div>
-  <div id="thickness">
-    <p>thickness:<%= oneCarpet.thickness %>
-    </p>
-  </div>
-  <div id="material">
-    <p>material:<%= oneCarpet.material %>
-    </p>
-  </div>
-  <div id="fixedLength">
-    <p>fixed Length:<%= oneCarpet.fixedLength %>
-    </p>
-  </div>
-  <div id="fixedWidth">
-    <p>fixed Width:<%= oneCarpet.thickness %>
-    </p>
-  </div>
-  <div id="stockQuantity">
-    <p>stock Quantity:<%= oneCarpet.stockQuantity %>
-    </p>
-  </div>
   <div id="price">
     <p>price:<%= oneCarpet.price %>
     </p>
-  </div>
-  <div id="isAvailable">
-    <p>is Available:<%= oneCarpet.isAvailable %>
-    </p>
-  </div>
-         <a href="/carpets/<%= oneCarpet._id %>">See Details</a>
-
-
-  <% } %>
+    <div id="CarpetsLink">
+      <a href="/carpets/<%= oneCarpet._id %>">See Details</a>
     </div>
+    <br>
+
+    <% } %>
+  </div>
 </body>
 
 </html>
