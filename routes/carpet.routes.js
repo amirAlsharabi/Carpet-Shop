@@ -52,7 +52,7 @@ router.get("/:carpetsId", async (req, res) => {
 
 router.get("/:carpetsId/edit",isAdmin, async (req, res) => {
   const foundCarpet = await Carpet.findById(req.params.carpetsId).populate();
-  res.render("Carpets-details.ejs", { foundCarpet });
+  res.render("Edit-Details.ejs", { foundCarpet });
 });
 
 
