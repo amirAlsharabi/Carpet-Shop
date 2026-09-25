@@ -30,7 +30,7 @@ router.post("/", isAdmin, upload.single("image"), async (req, res) => {
       imageUrl = `/uploads/${req.file.filename}`;
     }
     else{
-    const imageUrl =
+      imageUrl =
       "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80";
 
     }

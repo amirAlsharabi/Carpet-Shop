@@ -57,9 +57,11 @@
     </div>
     <br>
     </div>
-
-     <a href="/carpets/<%= foundCarpet._id %>/edit">Edit Carpets</a>
-   
+    <div id="edit-button-admin">
+        <% if( user && user.role==="admin" ){ %>
+            <a href="/carpets/<%= foundCarpet._id %>/edit">Edit Carpets</a>
+            <% } %>
+    </div>
 </body>
 
 </html>
