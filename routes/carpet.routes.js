@@ -61,6 +61,16 @@ router.get("/:carpetsId/edit", isAdmin, async (req, res) => {
   res.render("Edit-Details.ejs", { foundCarpet });
 });
 
+router.delete("/:carpetsId", isAdmin, async (req, res) => {
+  try {
+    await Carpet.findByIdAndDelete(req.params.carpetsId);
+    res.redirect("/carpets");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error deleting carpet");
+  }
+});
+
 router.put("/:carpetsId", isAdmin, upload.single("image"), async (req, res) => {
   try {
     const existingCarpet = await Carpet.findById(req.params.carpetsId);
@@ -84,7 +94,7 @@ router.put("/:carpetsId", isAdmin, upload.single("image"), async (req, res) => {
       imageUrl: imageUrl,
       stockQuantity: req.body.stockQuantity || 0,
       price: req.body.price,
-      isAvailable: req.body.isAvailable === "on", 
+      isAvailable: req.body.isAvailable === "on",
     });
 
     res.redirect(`/carpets/${req.params.carpetsId}`);
