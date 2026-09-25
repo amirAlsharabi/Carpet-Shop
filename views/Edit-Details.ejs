@@ -1,13 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Carpet Details</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Edit the carpet the details</h1>
-  
+    <form action="/carpets/<%= foundCarpet._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+      <label for="name">name:</label>
+      <input
+        value="<%= foundCarpet.name  %>"
+        name="name"
+        id="name"
+        type="text"
+      />
 
-</body>
+      <label for="type">Type:</label>
+<select name="type" id="type" required>
+  <option value="custom_meter" <%= foundCarpet.type === 'custom_meter' ? 'selected' : '' %>>
+    Custom Cut (By Meter)
+  </option>
+  <option value="ready_made" <%= foundCarpet.type === 'ready_made' ? 'selected' : '' %>>
+    Ready-made Rug
+  </option>
+</select>
+
+      <label for="origin">origin:</label>
+      <input
+        value="<%= foundCarpet.origin  %>"
+        name="origin"
+        id="origin"
+        type="text"
+      />
+
+      <label for="thickness">thickness:</label>
+      <input
+        value="<%= foundCarpet.thickness  %>"
+        name="thickness"
+        id="thickness"
+        type="number"
+      />
+
+      <label for="material">material:</label>
+      <input
+        value="<%= foundCarpet.material  %>"
+        name="material"
+        id="size"
+        type="text"
+      />
+
+      <label for="fixedLength">fixedLength:</label>
+      <input
+        value="<%= foundCarpet.fixedLength  %>"
+        name="fixedLength"
+        id="fixedLength"
+        type="number"
+      />
+
+      <label for="fixedWidth">fixedWidth:</label>
+      <input
+        value="<%= foundCarpet.fixedWidth  %>"
+        name="fixedWidth"
+        id="fixedWidth"
+        type="number"
+      />
+
+      <label for="imageUrl">imageUrl:</label>
+      <input
+        value="<%= foundCarpet.imageUrl  %>"
+        name="image"
+        id="imageUrl"
+        type="file"
+        accept="image/*"
+      />
+
+      <label for="stockQuantity">stockQuantity:</label>
+      <input
+        value="<%= foundCarpet.stockQuantity  %>"
+        name="stockQuantity"
+        id="stockQuantity"
+        type="number"
+      />
+
+      <label for="price">price:</label>
+      <input
+        value="<%= foundCarpet.price  %>"
+        name="price"
+        id="price"
+        type="number"
+      />
+
+      <label for="isAvailable">is Available:</label>
+      <input
+        name="isAvailable"
+        id="isAvailable"
+        type="checkbox"
+        <%= foundCarpet.isAvailable ? 'checked' : '' %> />
+
+      <button>Edit Carpet</button>
+    </form>
+  </body>
 </html>

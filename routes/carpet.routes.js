@@ -8,7 +8,6 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const upload = require("../middleware/upload");
 
-
 router.get("/", async (req, res) => {
   try {
     const AllCarpets = await Carpet.find();
@@ -28,11 +27,9 @@ router.post("/", isAdmin, upload.single("image"), async (req, res) => {
     let imageUrl;
     if (req.file) {
       imageUrl = `/uploads/${req.file.filename}`;
-    }
-    else{
+    } else {
       imageUrl =
-      "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80";
-
+        "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80";
     }
     const createCarpet = await Carpet.create({
       name: req.body.name,
@@ -59,11 +56,41 @@ router.get("/:carpetsId", async (req, res) => {
   res.render("Carpets-details.ejs", { foundCarpet });
 });
 
-router.get("/:carpetsId/edit",isAdmin, async (req, res) => {
+router.get("/:carpetsId/edit", isAdmin, async (req, res) => {
   const foundCarpet = await Carpet.findById(req.params.carpetsId).populate();
   res.render("Edit-Details.ejs", { foundCarpet });
 });
 
+router.put("/:carpetsId", isAdmin, upload.single("image"), async (req, res) => {
+  try {
+    const existingCarpet = await Carpet.findById(req.params.carpetsId);
+    if (!existingCarpet) {
+      return res.status(404).send("Carpet not found");
+    }
 
+    let imageUrl = existingCarpet.imageUrl;
+    if (req.file) {
+      imageUrl = `/uploads/${req.file.filename}`;
+    }
 
+    await Carpet.findByIdAndUpdate(req.params.carpetsId, {
+      name: req.body.name,
+      type: req.body.type,
+      origin: req.body.origin,
+      thickness: req.body.thickness,
+      material: req.body.material,
+      fixedLength: req.body.fixedLength || 0,
+      fixedWidth: req.body.fixedWidth || 0,
+      imageUrl: imageUrl,
+      stockQuantity: req.body.stockQuantity || 0,
+      price: req.body.price,
+      isAvailable: req.body.isAvailable === "on", 
+    });
+
+    res.redirect(`/carpets/${req.params.carpetsId}`);
+  } catch (error) {
+    console.error(error);
+    res.send(error.message);
+  }
+});
 module.exports = router;
