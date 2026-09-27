@@ -12,7 +12,7 @@ const order = require("../models/order");
 router.get("/", isSignedIn, async (req, res) => {
   try {
     const myOrder = await order
-      .find({ customer: req.session.User._id })
+      .find({ customer: req.session.user._id })
       .populate("carpet");
     res.render("ordersList.ejs", { myOrder });
   } catch (error) {
