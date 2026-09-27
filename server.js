@@ -16,6 +16,7 @@ const passUserToView = require("./middleware/pass-user-to-view.js");
 const authController = require("./routes/auth.routes.js");
 const indexController = require("./routes/index.routes.js");
 const carpetRotes=require("./routes/carpet.routes.js");
+const orderRotes=require("./routes/orders.routes.js");
 // Middleware
 app.use(express.static('public')) // my app will serve all static files from public folder
 app.use(express.urlencoded({ extended: false }));
@@ -53,7 +54,7 @@ app.use(passUserToView)
 app.use('/auth',authController)
 app.use('/',indexController)
 app.use('/carpets',carpetRotes)
-
+app.use('/orders',orderRotes )
 
 
 
