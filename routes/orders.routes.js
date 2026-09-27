@@ -7,10 +7,18 @@ const { model } = require("mongoose");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const upload = require("../middleware/upload");
-const order = require("../models/order")
+const order = require("../models/order");
 
+router.get("/", isSignedIn, async (req, res) => {
+  try {
+    const myOrder = await order
+      .find({ customer: req.session.User._id })
+      .populate("carpet");
+    res.render("ordersList.ejs", { myOrder });
+  } catch (error) {
+    console.error(error);
+    res.send(error.message);
+  }
+});
 
-
-
-
-module.express = router ; 
+module.exports = router;
