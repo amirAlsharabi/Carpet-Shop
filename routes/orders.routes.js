@@ -76,4 +76,10 @@ router.post("/", isSignedIn, async (req, res) => {
     res.send(error.message);
   }
 });
+
+router.get("/ordersId", isSignedIn, async (req, res) => {
+  const foundOrder = await order.findById(req.params.ordersId).populate();
+  res.render("order-Details.ejs", foundOrder);
+});
+
 module.exports = router;
