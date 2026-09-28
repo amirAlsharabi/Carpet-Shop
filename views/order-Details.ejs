@@ -64,7 +64,9 @@
                 </p>
             </div>
             <br>
-
+            <form action="/orders/<%= foundOrder._id %>?_method=DELETE" method="post">
+                <button id="delete order">Delete</button>
+            </form>
 
 </body>
 

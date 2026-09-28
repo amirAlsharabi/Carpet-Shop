@@ -58,6 +58,11 @@ const orderSchema = new mongoose.Schema(
       enum: ["Pending", "Cutting/Preparing", "Out for Installation", "Completed", "Cancelled"],
       default: "Pending",
     },
+    isDelete:{
+      type:Boolean,
+      default:false
+
+    }
   },
   { timestamps: true }
 );

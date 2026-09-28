@@ -17,11 +17,11 @@ router.get("/", isSignedIn, async (req, res) => {
       Order = await order.find().populate("carpet").populate("customer");
     } else {
       Order = await order
-        .find({ customer: req.session.user._id })
+        .find({ customer: req.session.user._id },{isDelete:false})
         .populate("carpet");
     }
 
-    res.render("ordersList.ejs", { Order });
+    res.render("ordersList.ejs", { Order ,});
   } catch (error) {
     console.error(error);
     res.send(error.message);
@@ -95,4 +95,16 @@ router.put("/:ordersId/status", isAdmin, async (req, res) => {
     res.send("Failed to update order status");
   }
 });
+
+router.delete("/:orderId",isSignedIn, async (req, res) => {
+  try {
+    await order.findByIdAndUpdate(req.params.orderId,{isDelete:true});
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+    res.send("Error deleting carpet");
+  }
+});
+
+
 module.exports = router;

@@ -67,7 +67,7 @@ router.delete("/:carpetsId", isAdmin, async (req, res) => {
     res.redirect("/carpets");
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error deleting carpet");
+    res.send("Error deleting carpet");
   }
 });
 
