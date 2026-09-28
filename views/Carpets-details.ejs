@@ -83,16 +83,16 @@
                     <input type="hidden" name="width" value="<%= foundCarpet.fixedWidth %>">
                     <% } %>
 
-                        <div id="edgingNeeded">
+                        <div id="edging">
                             <label>
-                                <input type="checkbox" name="edgingNeeded">
+                                <input type="checkbox" name="edgingNeeded" id="edgingNeeded" >
                                 Border Edging
                             </label>
                         </div>
 
-                        <div id="installationNeeded">
+                        <div id="homeFixing">
                             <label>
-                                <input type="checkbox" name="installationNeeded">
+                                <input type="checkbox" name="installationNeeded" id="installationNeeded">
                                 Home Installation
                             </label>
                         </div>
@@ -104,11 +104,81 @@
                         <input type="text" name="deliveryAddress" id="deliveryAddress" required>
 
                         <button type="submit">Confirm & Place Order</button>
+                        <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                            <h3>Order Summary</h3>
+                            <p>Total Area: <strong id="displayArea">0</strong> m²</p>
+                            <p>Base Carpet Price: <strong id="displayBasePrice">0.00</strong> BD</p>
+                            <p>Extra Services Fee: <strong id="displayServiceFee">0.00</strong> BD</p>
+                            <hr>
+                            <h4>Estimated Total: <strong id="displayTotal">0.00</strong> BD</h4>
+                        </div>
         </form>
 
         <% } else { %>
             <p><a href="/auth/sign-in">Sign in</a> to customize and order this carpet.</p>
             <% } %>
+
+                <script>
+                    const unitPrice = Number("<%= foundCarpet.price %>");
+                    const carpetType = "<%= foundCarpet.type %>";
+                    const defaultLength = Number("<%= foundCarpet.fixedLength || 0 %>");
+                    const defaultWidth = Number("<%= foundCarpet.fixedWidth || 0 %>");
+
+                    const lengthInput = document.getElementById("length");
+                    const widthInput = document.getElementById("width");
+                    const installCheckbox = document.getElementById("installationNeeded");
+                    const edgingCheckbox = document.getElementById("edgingNeeded");
+
+                    const displayArea = document.getElementById("displayArea");
+                    const displayBasePrice = document.getElementById("displayBasePrice");
+                    const displayServiceFee = document.getElementById("displayServiceFee");
+                    const displayTotal = document.getElementById("displayTotal");
+
+                    function calculatePrice() {
+                        let length = defaultLength;
+                        let width = defaultWidth;
+
+                        if (carpetType === "custom_meter") {
+                            length = Number(lengthInput ? lengthInput.value : 0);
+                            width = Number(widthInput ? widthInput.value : 0);
+                        }
+
+                        const totalArea = length * width;
+
+                        let fixingPrice = 0;
+                        let edgingPrice = 0;
+
+                        if (installCheckbox && installCheckbox.checked) {
+                            fixingPrice = totalArea * 0.4;
+                        }
+                        if (edgingCheckbox && edgingCheckbox.checked) {
+                            edgingPrice = (length + width) * 2;
+                        }
+
+                        const fee = fixingPrice + edgingPrice;
+
+                        let basePrice = 0;
+                        if (carpetType === "custom_meter") {
+                            basePrice = totalArea * unitPrice;
+                        } else {
+                            basePrice = unitPrice;
+                        }
+
+                        const totalPrice = basePrice + fee;
+
+                        displayArea.innerText = totalArea.toFixed(2);
+                        displayBasePrice.innerText = basePrice.toFixed(2);
+                        displayServiceFee.innerText = fee.toFixed(2);
+                        displayTotal.innerText = totalPrice.toFixed(2);
+                    }
+
+                    if (lengthInput) lengthInput.addEventListener("input", calculatePrice);
+                    if (widthInput) widthInput.addEventListener("input", calculatePrice);
+                    if (installCheckbox) installCheckbox.addEventListener("change", calculatePrice);
+                    if (edgingCheckbox) edgingCheckbox.addEventListener("change", calculatePrice);
+
+                    calculatePrice();
+                </script>
 
 </body>
 
