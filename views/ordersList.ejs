@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orders List</title>
 </head>
+
 <body>
     <h1>Your orders</h1>
-    <p>   </p>
+    <% for (let myOrders of Order) { %>
+        <div id="orderID">
+            <%= myOrders._id %>
+        </div>
+        
+        <div id="imageCarpet">
+            <img src="<%= myOrders.carpet.imageUrl %>" alt="<%= myOrders.carpet.name %>">
+            <p>carpet name:<%= myOrders.carpet.name %> </p>
+        </div>
+        <div id="type">
+            <p>Carpet type: <%= myOrders.type %>
+            </p>
+        </div>
+        <div id="size">
+            <p>Size: <%= myOrders.width %> X <%=myOrders.length %>
+            </p>
+            <p>total Area: <%= myOrders.totalArea %>
+            </p>
+        </div>
+        <div id="price">
+            <p>Service Fee: <%=myOrders.serviceFee %> BD
+            </p>
+            <p>total price: <%= myOrders.totalPrice %> BD
+            </p>
+        </div>
+        <div id="address">
+            <p>address: <%= myOrders.deliveryAddress %>
+            </p>
+
+        </div>
+        <div id="status">
+            <p>order status: <%= myOrders.status %>
+            </p>
+        </div>
+        <br>
+        <% }%>
 </body>
+
 </html>
