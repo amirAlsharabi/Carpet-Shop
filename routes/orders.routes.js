@@ -19,7 +19,7 @@ router.get("/", isSignedIn, async (req, res) => {
       Order = await order
         .find({ customer: req.session.user._id })
         .populate("carpet");
-    }  
+    }
 
     res.render("ordersList.ejs", { Order });
   } catch (error) {
@@ -78,8 +78,21 @@ router.post("/", isSignedIn, async (req, res) => {
 });
 
 router.get("/:ordersId", isSignedIn, async (req, res) => {
-  const foundOrder = await order.findById(req.params.ordersId).populate('carpet');
-  res.render("order-Details.ejs",{ foundOrder:foundOrder});
+  const foundOrder = await order
+    .findById(req.params.ordersId)
+    .populate("carpet");
+  res.render("order-Details.ejs", { foundOrder: foundOrder });
 });
 
+router.put("/:ordersId/status", isAdmin, async (req, res) => {
+  try {
+    await order.findByIdAndUpdate(req.params.ordersId, {
+      status: req.body.status,
+    });
+    res.redirect(`/orders/${req.params.ordersId}`);
+  } catch (error) {
+    console.error(error);
+    res.send("Failed to update order status");
+  }
+});
 module.exports = router;
