@@ -1,52 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>order Details</title>
 </head>
+
 <body>
     <h1>order details</h1>
-     <% for (let myOrders of foundOrder) { %>
-        <div id="orderID">
-            <%= myOrders._id %>
-        </div>
 
-        <div id="imageCarpet">
-            <img src="<%= myOrders.carpet.imageUrl %>" alt="<%= myOrders.carpet.name %>">
-            <p>carpet name:<%= myOrders.carpet.name %>
-            </p>
-        </div>
-        <div id="type">
-            <p>Carpet type: <%= myOrders.type %>
-            </p>
-        </div>
-        <div id="size">
-            <p>Size: <%= myOrders.width %> X <%=myOrders.length %>
-            </p>
-            <p>total Area: <%= myOrders.totalArea %>
-            </p>
-        </div>
-        <div id="price">
-            <p>Service Fee: <%=myOrders.serviceFee %> BD
-            </p>
-            <p>total price: <%= myOrders.totalPrice %> BD
-            </p>
-        </div>
-        <div id="address">
-            <p>address: <%= myOrders.deliveryAddress %>
-            </p>
-        </div>
-         <div id="phone">
-            <p>phone: <%= myOrders.phone %>
-            </p>
-        </div>
-        <div id="status">
-            <p>order status: <%= myOrders.status %>
-            </p>
-        </div>
-        <br>
-        <% }%>
+    <div id="orderID">
+        <%= foundOrder._id %>
+    </div>
+
+    <div id="imageCarpet">
+        <img src="<%= foundOrder.carpet.imageUrl %>" alt="<%= foundOrder.carpet.name %>">
+        </p>
+    </div>
+    <div id="type">
+        <p>Carpet type: <%= foundOrder.orderType %>
+        </p>
+    </div>
+    <div id="size">
+        <p>Size: <%= foundOrder.width %> X <%=foundOrder.length %>
+        </p>
+        <p>total Area: <%= foundOrder.totalArea %>
+        </p>
+    </div>
+    <div id="price">
+        <p>Service Fee: <%=foundOrder.serviceFee %> BD
+        </p>
+        <p>total price: <%= foundOrder.totalPrice %> BD
+        </p>
+    </div>
+    <div id="address">
+        <p>address: <%= foundOrder.deliveryAddress %>
+        </p>
+    </div>
+    <div id="phone">
+        <p>phone: <%= foundOrder.phone %>
+        </p>
+    </div>
+    <% if (user && user.role==="admin" ) { %>
+        <hr>
+        <h3>Update Order Status</h3>
+        <form action="/orders/<%= foundOrder._id %>/status?_method=PUT" method="POST">
+            <label for="status">Change Status:</label>
+            <select name="status" id="status" required>
+                <option value="Pending" <%=foundOrder.status==='Pending' ? 'selected' : '' %>>Pending</option>
+                <option value="Cutting/Preparing" <%=foundOrder.status==='Cutting/Preparing' ? 'selected' : '' %>
+                    >Cutting/Preparing</option>
+                <option value="Out for Installation" <%=foundOrder.status==='Out for Installation' ? 'selected' : '' %>
+                    >Out for Installation</option>
+                <option value="Completed" <%=foundOrder.status==='Completed' ? 'selected' : '' %>>Completed</option>
+                <option value="Cancelled" <%=foundOrder.status==='Cancelled' ? 'selected' : '' %>>Cancelled</option>
+            </select>
+            <button type="submit">Update Status</button>
+        </form>
+        <% } %>
+            <div id="status">
+                <p>order status: <%= foundOrder.status %>
+                </p>
+            </div>
+            <br>
+
 
 </body>
+
 </html>

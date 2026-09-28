@@ -19,7 +19,7 @@ router.get("/", isSignedIn, async (req, res) => {
       Order = await order
         .find({ customer: req.session.user._id })
         .populate("carpet");
-    }
+    }  
 
     res.render("ordersList.ejs", { Order });
   } catch (error) {
@@ -77,9 +77,9 @@ router.post("/", isSignedIn, async (req, res) => {
   }
 });
 
-router.get("/ordersId", isSignedIn, async (req, res) => {
-  const foundOrder = await order.findById(req.params.ordersId).populate();
-  res.render("order-Details.ejs", foundOrder);
+router.get("/:ordersId", isSignedIn, async (req, res) => {
+  const foundOrder = await order.findById(req.params.ordersId).populate('carpet');
+  res.render("order-Details.ejs",{ foundOrder:foundOrder});
 });
 
 module.exports = router;
