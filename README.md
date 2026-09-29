@@ -8,8 +8,14 @@ Admins can manage the carpet catalog and track customer orders through different
 
 ## Screenshots
 
-Screenshots of the application will be added after the project is completed.
+### ERD 
+![ERD](./ERD/Blank%20diagram.png)
 
+### Home Page
+![Home Page](./picture/Screenshot%202026-09-29%20202308.png)
+
+### Your orders Page
+![Yours orders](./picture/Screenshot%202026-09-29%20202748.png)
 ## Technologies Used
 
 Node.js
