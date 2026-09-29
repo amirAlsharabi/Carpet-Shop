@@ -8,102 +8,63 @@
   </head>
   <body>
     <%- include('partials/navbar') %>
-    <h1>Edit the carpet the details</h1>
-    <form action="/carpets/<%= foundCarpet._id %>?_method=PUT" method="post" enctype="multipart/form-data">
-      <label for="name">name:</label>
-      <input
-        value="<%= foundCarpet.name  %>"
-        name="name"
-        id="name"
-        type="text"
-      />
+    <h1>Edit the carpet details</h1>
 
-      <label for="type">Type:</label>
-<select name="type" id="type" required>
-  <option value="custom_meter" <%= foundCarpet.type === 'custom_meter' ? 'selected' : '' %>>
-    Custom Cut (By Meter)
-  </option>
-  <option value="ready_made" <%= foundCarpet.type === 'ready_made' ? 'selected' : '' %>>
-    Ready-made Rug
-  </option>
-</select>
+    <div class="details-container">
+        
+        <form action="/carpets/<%= foundCarpet._id %>?_method=PUT" method="post" enctype="multipart/form-data" style="box-shadow: none; border: none; padding: 0; margin: 0;">
+          
+          <label for="name">name:</label>
+          <input value="<%= foundCarpet.name %>" name="name" id="name" type="text" />
 
-      <label for="origin">origin:</label>
-      <input
-        value="<%= foundCarpet.origin  %>"
-        name="origin"
-        id="origin"
-        type="text"
-      />
+          <label for="type">Type:</label>
+          <select name="type" id="type" required>
+            <option value="custom_meter" <%= foundCarpet.type === 'custom_meter' ? 'selected' : '' %>>
+              Custom Cut (By Meter)
+            </option>
+            <option value="ready_made" <%= foundCarpet.type === 'ready_made' ? 'selected' : '' %>>
+              Ready-made Rug
+            </option>
+          </select>
 
-      <label for="thickness">thickness:</label>
-      <input
-        value="<%= foundCarpet.thickness  %>"
-        name="thickness"
-        id="thickness"
-        type="number"
-      />
+          <label for="origin">origin:</label>
+          <input value="<%= foundCarpet.origin %>" name="origin" id="origin" type="text" />
 
-      <label for="material">material:</label>
-      <input
-        value="<%= foundCarpet.material  %>"
-        name="material"
-        id="size"
-        type="text"
-      />
+          <label for="thickness">thickness:</label>
+          <input value="<%= foundCarpet.thickness %>" name="thickness" id="thickness" type="number" />
 
-      <label for="fixedLength">fixedLength:</label>
-      <input
-        value="<%= foundCarpet.fixedLength  %>"
-        name="fixedLength"
-        id="fixedLength"
-        type="number"
-      />
+          <label for="material">material:</label>
+          <input value="<%= foundCarpet.material %>" name="material" id="size" type="text" />
 
-      <label for="fixedWidth">fixedWidth:</label>
-      <input
-        value="<%= foundCarpet.fixedWidth  %>"
-        name="fixedWidth"
-        id="fixedWidth"
-        type="number"
-      />
+          <label for="fixedLength">fixedLength:</label>
+          <input value="<%= foundCarpet.fixedLength %>" name="fixedLength" id="fixedLength" type="number" />
 
-      <label for="imageUrl">imageUrl:</label>
-      <input
-        value="<%= foundCarpet.imageUrl  %>"
-        name="image"
-        id="imageUrl"
-        type="file"
-        accept="image/*"
-      />
+          <label for="fixedWidth">fixedWidth:</label>
+          <input value="<%= foundCarpet.fixedWidth %>" name="fixedWidth" id="fixedWidth" type="number" />
 
-      <label for="stockQuantity">stockQuantity:</label>
-      <input
-        value="<%= foundCarpet.stockQuantity  %>"
-        name="stockQuantity"
-        id="stockQuantity"
-        type="number"
-      />
+          <label for="imageUrl">imageUrl:</label>
+          <input value="<%= foundCarpet.imageUrl %>" name="image" id="imageUrl" type="file" accept="image/*" />
 
-      <label for="price">price:</label>
-      <input
-        value="<%= foundCarpet.price  %>"
-        name="price"
-        id="price"
-        type="number"
-      />
+          <label for="stockQuantity">stockQuantity:</label>
+          <input value="<%= foundCarpet.stockQuantity %>" name="stockQuantity" id="stockQuantity" type="number" />
 
-      <label for="isAvailable">is Available:</label>
-      <input
-        name="isAvailable"
-        id="isAvailable"
-        type="checkbox"
-        <%= foundCarpet.isAvailable ? 'checked' : '' %> />
+          <label for="price">price:</label>
+          <input value="<%= foundCarpet.price %>" name="price" id="price" type="number" />
 
-      <button>Edit Carpet</button>
-    </form>
- <form action="/carpets/<%= foundCarpet._id %>?_method=DELETE" method="post">
-        <button>Delete Carpet</button>
-    </form>
+          <div style="margin-top: 15px; display: flex; align-items: center;">
+              <input name="isAvailable" id="isAvailable" type="checkbox" style="width: auto; margin: 0 10px 0 0;" <%= foundCarpet.isAvailable ? 'checked' : '' %> />
+              <label for="isAvailable" style="margin: 0;">is Available</label>
+          </div>
+
+          <button type="submit">Edit Carpet</button>
+        </form>
+
+        <hr style="margin: 25px 0; border-top: 1px solid #eaeaea;">
+
+        <form action="/carpets/<%= foundCarpet._id %>?_method=DELETE" method="post" style="box-shadow: none; border: none; padding: 0; margin: 0;">
+            <button type="submit">Delete Carpet</button>
+        </form>
+
+    </div> 
   </body>
 </html>

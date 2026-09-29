@@ -12,64 +12,56 @@
     <%- include('partials/navbar') %>
     <h1>order details</h1>
 
-    <div id="orderID">
-        <%= foundOrder._id %>
-    </div>
+    <div class="details-container">
+        <div id="orderID">
+            <%= foundOrder._id %>
+        </div>
 
-    <div id="imageCarpet">
-        <img src="/<%= foundOrder.carpet.imageUrl %>" alt="<%= foundOrder.carpet.name %>">
-        </p>
-    </div>
-    <div id="type">
-        <p>Carpet type: <%= foundOrder.orderType %>
-        </p>
-    </div>
-    <div id="size">
-        <p>Size: <%= foundOrder.width %> X <%=foundOrder.length %>
-        </p>
-        <p>total Area: <%= foundOrder.totalArea %>
-        </p>
-    </div>
-    <div id="price">
-        <p>Service Fee: <%=foundOrder.serviceFee %> BD
-        </p>
-        <p>total price: <%= foundOrder.totalPrice %> BD
-        </p>
-    </div>
-    <div id="address">
-        <p>address: <%= foundOrder.deliveryAddress %>
-        </p>
-    </div>
-    <div id="phone">
-        <p>phone: <%= foundOrder.phone %>
-        </p>
-    </div>
-    <% if (user && user.role==="admin" ) { %>
-        <hr>
-        <h3>Update Order Status</h3>
-        <form action="/orders/<%= foundOrder._id %>/status?_method=PUT" method="POST">
-            <label for="status">Change Status:</label>
-            <select name="status" id="status" required>
-                <option value="Pending" <%=foundOrder.status==='Pending' ? 'selected' : '' %>>Pending</option>
-                <option value="Cutting/Preparing" <%=foundOrder.status==='Cutting/Preparing' ? 'selected' : '' %>
-                    >Cutting/Preparing</option>
-                <option value="Out for Installation" <%=foundOrder.status==='Out for Installation' ? 'selected' : '' %>
-                    >Out for Installation</option>
-                <option value="Completed" <%=foundOrder.status==='Completed' ? 'selected' : '' %>>Completed</option>
-                <option value="Cancelled" <%=foundOrder.status==='Cancelled' ? 'selected' : '' %>>Cancelled</option>
-            </select>
-            <button type="submit">Update Status</button>
-        </form>
-        <% } %>
-            <div id="status">
-                <p>order status: <%= foundOrder.status %>
-                </p>
-            </div>
-            <br>
-            <form action="/orders/<%= foundOrder._id %>?_method=DELETE" method="post">
-                <button id="delete order">Delete</button>
+        <div id="imageCarpet">
+            <img src="<%= foundOrder.carpet.imageUrl %>" alt="<%= foundOrder.carpet.name %>">
+        </div>
+        <div id="type">
+            <p>Carpet type: <%= foundOrder.orderType %></p>
+        </div>
+        <div id="size">
+            <p>Size: <%= foundOrder.width %> X <%= foundOrder.length %></p>
+            <p>total Area: <%= foundOrder.totalArea %></p>
+        </div>
+        <div id="price">
+            <p>Service Fee: <%= foundOrder.serviceFee.toFixed(2) %> BD</p>
+            <p>total price: <%= foundOrder.totalPrice.toFixed(2) %> BD</p>
+        </div>
+        <div id="address">
+            <p>address: <%= foundOrder.deliveryAddress %></p>
+        </div>
+        <div id="phone">
+            <p>phone: <%= foundOrder.phone %></p>
+        </div>
+
+        <% if (user && user.role === "admin") { %>
+            <hr>
+            <h3>Update Order Status</h3>
+            <form action="/orders/<%= foundOrder._id %>/status?_method=PUT" method="POST">
+                <label for="status">Change Status:</label>
+                <select name="status" id="status" required>
+                    <option value="Pending" <%= foundOrder.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                    <option value="Cutting/Preparing" <%= foundOrder.status === 'Cutting/Preparing' ? 'selected' : '' %>>Cutting/Preparing</option>
+                    <option value="Out for Installation" <%= foundOrder.status === 'Out for Installation' ? 'selected' : '' %>>Out for Installation</option>
+                    <option value="Completed" <%= foundOrder.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+                    <option value="Cancelled" <%= foundOrder.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                </select>
+                <button type="submit">Update Status</button>
             </form>
+        <% } %>
 
+        <div id="status">
+            <p>order status: <%= foundOrder.status %></p>
+        </div>
+        <br>
+        <form action="/orders/<%= foundOrder._id %>?_method=DELETE" method="post">
+            <button id="delete order">Delete</button>
+        </form>
+    </div> 
 </body>
 
 </html>

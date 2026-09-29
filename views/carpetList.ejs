@@ -2,46 +2,40 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>carpet list</title>
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carpet list</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-  <%- include('partials/navbar') %>
+    <%- include('partials/navbar') %>
     <h1>Carpet List</h1>
 
-    <% for(let oneCarpet of AllCarpets){ %>
-      <div class="card-item">
-        <div id="imageCarpet">
-          <img src="/<%= oneCarpet.imageUrl %>" alt="<%= oneCarpet.name %>">
-        </div>
-        <div id="nameOftheCarpet">
-          <p>Name:<%= oneCarpet.name %>
-          </p>
-        </div>
-        <div id="type">
-          <p>type:<%= oneCarpet.type %>
-          </p>
-        </div>
-
-        <div id="origin">
-          <p>origin:<%= oneCarpet.origin %>
-          </p>
-        </div>
-        <div id="price">
-          <p>price:<%= oneCarpet.price %>
-          </p>
-        </div>
-        <div id="CarpetsLink">
-          <a href="/carpets/<%= oneCarpet._id %>">See Details</a>
-        </div>
-      </div>
-      <br>
-      <% } %>
-
-
+    <div class="carpet list">
+        <% for(let oneCarpet of AllCarpets){ %>
+            <div class="card-item">
+                <div id="imageCarpet">
+                    <img src="<%= oneCarpet.imageUrl %>" alt="<%= oneCarpet.name %>">
+                </div>
+                <div id="nameOftheCarpet">
+                    <p>Name: <%= oneCarpet.name %></p>
+                </div>
+                <div id="type">
+                    <p>type: <%= oneCarpet.type %></p>
+                </div>
+                <div id="origin">
+                    <p>origin: <%= oneCarpet.origin %></p>
+                </div>
+                <div id="price">
+                    <p>price: <%= oneCarpet.price %></p>
+                </div>
+                <div id="CarpetsLink">
+                    <a href="/carpets/<%= oneCarpet._id %>">See Details</a>
+                </div>
+            </div>
+        <% } %>
+    </div> 
 </body>
 
 </html>

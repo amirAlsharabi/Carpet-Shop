@@ -19,12 +19,15 @@ a {
     font-weight: 500;
 }
 
-/* --- تعديل الناف بار ليفصل الشعار عن الروابط --- */
-nav.navbar {
+a:hover {
+    text-decoration: underline;
+}
+
+nav.navbar, nav {
     background-color: #2c3e50;
     padding: 15px 30px;
     display: flex;
-    justify-content: space-between; /* يفصل اليمين عن اليسار */
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -37,50 +40,24 @@ nav.navbar {
 
 .nav-links {
     display: flex;
-    gap: 20px; /* مسافة بين الروابط */
+    gap: 20px;
     align-items: center;
 }
 
-/* --- تعديل شبكة السجاد لتتوزع بشكل احترافي في المنتصف --- */
-.carpet.list {
-    display: grid;
-    /* يوزع البطاقات تلقائياً بعرض 300 بكسل كحد أدنى */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto; /* يضع الشبكة في منتصف الشاشة */
+.nav-links a {
+    color: #ffffff;
+    font-size: 16px;
 }
 
-/* تحديث طفيف للبطاقة لتناسب الشبكة الجديدة */
-.card-item {
-    background: #fff;
-    width: 100%; /* تأخذ عرض الخلية بالكامل */
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    border: 1px solid #e0e0e0;
-    display: flex;
-    flex-direction: column;
+.nav-links a:hover {
+    color: #e0d5c1;
 }
 
-/* تثبيت ارتفاع الصورة كي لا يتشوه التصميم */
-#imageCarpet img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-/* دفع زر "See Details" لأسفل البطاقة دائماً */
-#CarpetsLink {
-    margin-top: auto;
-}
-
-form {
+form[action="/auth/sign-in"],
+form[action="/auth/sign-up"],
+form[action="/carpets"] {
     background-color: #ffffff;
-    max-width: 450px;
+    max-width: 420px;
     margin: 40px auto;
     padding: 30px;
     border-radius: 8px;
@@ -102,7 +79,7 @@ input[type="number"],
 input[type="file"],
 select {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -115,15 +92,11 @@ input:focus, select:focus {
     border-color: #8c6d46;
 }
 
-input[type="checkbox"] {
-    margin-right: 8px;
-}
-
 button {
-    background-color: #4a5d4e; 
+    background-color: #4a5d4e;
     color: white;
-    padding: 12px;
-    margin-top: 25px;
+    padding: 10px 15px;
+    margin-top: 15px;
     border: none;
     border-radius: 5px;
     width: 100%;
@@ -137,21 +110,70 @@ button:hover {
     background-color: #3b4a3e;
 }
 
-button#delete\ order {
-    background-color: #c0392b; 
+button#delete\ order, form[action*="DELETE"] button {
+    background-color: #c0392b;
+    margin-top: 10px;
+}
+
+button#delete\ order:hover, form[action*="DELETE"] button:hover {
+    background-color: #a93226;
+}
+
+.details-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+}
+
+#imageCarpet img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+#nameOftheCarpet p, #type p, #origin p, #size p, #address p, #phone p {
+    margin: 8px 0;
+    font-size: 15px;
+    color: #555;
+    border-bottom: 1px solid #f9f9f9;
+    padding-bottom: 5px;
+}
+
+#price p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #8c6d46;
+    margin: 15px 0;
+}
+
+#status p {
+    display: inline-block;
+    background-color: #eef2f5;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 10px;
 }
 
 .carpet.list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
     padding: 20px;
-    justify-content: center;
 }
 
 .card-item {
     background: #fff;
-    width: 300px;
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -160,42 +182,8 @@ button#delete\ order {
     flex-direction: column;
 }
 
-#imageCarpet img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-#nameOftheCarpet p, #type p, #origin p, #size p, #address p, #phone p {
-    margin: 5px 0;
-    font-size: 15px;
-    color: #555;
-}
-
-#price p {
-    font-size: 18px;
-    font-weight: bold;
-    color: #8c6d46; 
-    margin: 10px 0;
-}
-
-#status p {
-    display: inline-block;
-    background-color: #eef2f5;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #2c3e50;
-    margin-top: 10px;
-}
-
-#orderID {
-    font-size: 12px;
-    color: #999;
-    margin-bottom: 10px;
+#CarpetsLink {
+    margin-top: auto;
 }
 
 #CarpetsLink a {
@@ -204,23 +192,6 @@ button#delete\ order {
     background-color: #f4f4f4;
     padding: 8px;
     border-radius: 4px;
-    margin-top: 10px;
+    margin-top: 15px;
     color: #333;
-}
-
-#CarpetsLink a:hover {
-    background-color: #e2e2e2;
-    text-decoration: none;
-}
-
-#thickness, #material, #fixedLength, #fixedWidth, #stockQuantity, #isAvailable {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 5px 20px;
-    border-bottom: 1px solid #eee;
-}
-
-#edit-button-admin {
-    text-align: center;
-    margin: 20px;
 }
