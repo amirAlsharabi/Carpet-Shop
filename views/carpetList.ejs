@@ -5,22 +5,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>carpet list</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+  <%- include('partials/navbar') %>
   <h1>Carpet List</h1>
   <div class="carpet list">
     <% for(let oneCarpet of AllCarpets){ %>
       <div id="imageCarpet">
+        <% if (oneCarpet.carpet) { %>
         <img src="<%= oneCarpet.imageUrl %>" alt="<%= oneCarpet.name %>">
+        <% } %>
       </div>
       <div id="nameOftheCarpet">
         <p>Name:<%= oneCarpet.name %>
         </p>
       </div>
-      <div id="type"></div>
-      <p>type:<%= oneCarpet.type %>
-      </p>
+      <div id="type">
+        <p>type:<%= oneCarpet.type %>
+        </p>
+      </div>
   </div>
   <div id="origin">
     <p>origin:<%= oneCarpet.origin %>

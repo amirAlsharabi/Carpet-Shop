@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orders List</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+    <%- include('partials/navbar') %>
     <h1>Your orders</h1>
     <% for (let myOrders of Order) { %>
         <div id="orderID">
@@ -15,12 +17,14 @@
         </div>
 
         <div id="imageCarpet">
+            <% if (myOrders.carpet) { %>
             <img src="<%= myOrders.carpet.imageUrl %>" alt="<%= myOrders.carpet.name %>">
+            <% } %>
             <p>carpet name:<%= myOrders.carpet.name %>
             </p>
         </div>
         <div id="type">
-            <p>Carpet type: <%= myOrders.type %>
+            <p>Carpet type: <%= myOrders.orderType %>
             </p>
         </div>
         <div id="price">
