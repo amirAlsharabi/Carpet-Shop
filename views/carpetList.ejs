@@ -10,37 +10,38 @@
 
 <body>
   <%- include('partials/navbar') %>
-  <h1>Carpet List</h1>
-  <div class="carpet list">
-    <% for(let oneCarpet of AllCarpets){ %>
-      <div id="imageCarpet">
-        <% if (oneCarpet.carpet) { %>
-        <img src="<%= oneCarpet.imageUrl %>" alt="<%= oneCarpet.name %>">
-        <% } %>
-      </div>
-      <div id="nameOftheCarpet">
-        <p>Name:<%= oneCarpet.name %>
-        </p>
-      </div>
-      <div id="type">
-        <p>type:<%= oneCarpet.type %>
-        </p>
-      </div>
-  </div>
-  <div id="origin">
-    <p>origin:<%= oneCarpet.origin %>
-    </p>
-  </div>
-  <div id="price">
-    <p>price:<%= oneCarpet.price %>
-    </p>
-    <div id="CarpetsLink">
-      <a href="/carpets/<%= oneCarpet._id %>">See Details</a>
-    </div>
-    <br>
+    <h1>Carpet List</h1>
 
-    <% } %>
-  </div>
+    <% for(let oneCarpet of AllCarpets){ %>
+      <div class="card-item">
+        <div id="imageCarpet">
+          <img src="/<%= oneCarpet.imageUrl %>" alt="<%= oneCarpet.name %>">
+        </div>
+        <div id="nameOftheCarpet">
+          <p>Name:<%= oneCarpet.name %>
+          </p>
+        </div>
+        <div id="type">
+          <p>type:<%= oneCarpet.type %>
+          </p>
+        </div>
+
+        <div id="origin">
+          <p>origin:<%= oneCarpet.origin %>
+          </p>
+        </div>
+        <div id="price">
+          <p>price:<%= oneCarpet.price %>
+          </p>
+        </div>
+        <div id="CarpetsLink">
+          <a href="/carpets/<%= oneCarpet._id %>">See Details</a>
+        </div>
+      </div>
+      <br>
+      <% } %>
+
+
 </body>
 
 </html>
