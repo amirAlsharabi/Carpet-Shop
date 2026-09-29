@@ -44,6 +44,14 @@ nav.navbar, nav {
     align-items: center;
 }
 
+.user-badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #f1e7d5;
+    color: #243746;
+    font-weight: 600;
+}
+
 .nav-links a {
     color: #ffffff;
     font-size: 16px;
