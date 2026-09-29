@@ -16,6 +16,9 @@ Admins can manage the carpet catalog and track customer orders through different
 
 ### Your orders Page
 ![Yours orders](./picture/Screenshot%202026-09-29%20202748.png)
+
+### adding carpet(Admin only) Page
+![Adding carpets](./picture/add-carpet.png)
 ## Technologies Used
 
 Node.js
