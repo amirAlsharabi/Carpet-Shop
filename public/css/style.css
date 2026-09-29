@@ -1,346 +1,226 @@
-/* --- Base Settings --- */
-:root {
-  --bg-color: #faf9f6;
-  --card-bg: #ffffff;
-  --text-main: #2b2b2b;
-  --text-muted: #666666;
-  --border-color: #e5e5e5;
-  --primary: #2c3e50;
-  --primary-hover: #1a252f;
-  --accent: #8c6d46;
-  --danger: #b94a48;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.6;
-}
-
-/* --- Container --- */
-.container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 0 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+    background-color: #f7f6f2; 
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
 h1, h2, h3 {
-  font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: 20px;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 30px;
 }
 
 a {
-  color: var(--primary);
-  text-decoration: none;
+    color: #8c6d46;
+    text-decoration: none;
+    font-weight: 500;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* --- Navbar --- */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--card-bg);
-  border-bottom: 1px solid var(--border-color);
-  padding: 16px 32px;
+/* --- تعديل الناف بار ليفصل الشعار عن الروابط --- */
+nav.navbar {
+    background-color: #2c3e50;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between; /* يفصل اليمين عن اليسار */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .nav-brand a {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--primary);
-  letter-spacing: -0.5px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
 }
 
 .nav-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    gap: 20px; /* مسافة بين الروابط */
+    align-items: center;
 }
 
-.nav-links a {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  transition: color 0.15s ease;
+/* --- تعديل شبكة السجاد لتتوزع بشكل احترافي في المنتصف --- */
+.carpet.list {
+    display: grid;
+    /* يوزع البطاقات تلقائياً بعرض 300 بكسل كحد أدنى */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* يضع الشبكة في منتصف الشاشة */
 }
 
-.nav-links a:hover {
-  color: var(--text-main);
-  text-decoration: none;
+/* تحديث طفيف للبطاقة لتناسب الشبكة الجديدة */
+.card-item {
+    background: #fff;
+    width: 100%; /* تأخذ عرض الخلية بالكامل */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
 }
 
-.user-badge {
-  font-size: 0.85rem;
-  background-color: #f0f0f0;
-  padding: 4px 10px;
-  border-radius: 4px;
-  color: var(--text-muted);
+/* تثبيت ارتفاع الصورة كي لا يتشوه التصميم */
+#imageCarpet img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
 
-.btn-signup, .btn-logout {
-  padding: 6px 14px;
-  border-radius: 4px;
-  font-weight: 500;
+/* دفع زر "See Details" لأسفل البطاقة دائماً */
+#CarpetsLink {
+    margin-top: auto;
 }
 
-.btn-signup {
-  background-color: var(--primary);
-  color: #fff !important;
-}
-
-.btn-signup:hover {
-  background-color: var(--primary-hover);
-}
-
-/* --- Forms --- */
 form {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
-}
-
-.form-group {
-  margin-bottom: 18px;
+    background-color: #ffffff;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
 }
 
 label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 6px;
-  color: var(--text-main);
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #444;
 }
 
 input[type="text"],
-input[type="number"],
 input[type="password"],
+input[type="number"],
 input[type="file"],
-select,
-textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  font-size: 0.95rem;
-  background: #fff;
-  transition: border-color 0.15s ease;
+select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 15px;
 }
 
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--accent);
+input:focus, select:focus {
+    outline: none;
+    border-color: #8c6d46;
 }
 
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.checkbox-group input {
-  width: auto;
+input[type="checkbox"] {
+    margin-right: 8px;
 }
 
 button {
-  background-color: var(--primary);
-  color: #fff;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
+    background-color: #4a5d4e; 
+    color: white;
+    padding: 12px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 button:hover {
-  background-color: var(--primary-hover);
+    background-color: #3b4a3e;
 }
 
-button.danger {
-  background-color: #fff;
-  color: var(--danger);
-  border: 1px solid var(--danger);
+button#delete\ order {
+    background-color: #c0392b; 
 }
 
-button.danger:hover {
-  background-color: var(--danger);
-  color: #fff;
+.carpet.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
 }
 
-/* --- Carpet Grid --- */
-.carpet-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  margin-top: 20px;
-}
-
-.carpet-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.carpet-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.carpet-card-content {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.carpet-card h3 {
-  margin-bottom: 6px;
-  font-size: 1.15rem;
-}
-
-.carpet-card .price {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--accent);
-  margin: 8px 0;
-}
-
-.carpet-card a.details-link {
-  margin-top: auto;
-  display: inline-block;
-  text-align: center;
-  padding: 8px 0;
-  background-color: #f7f7f7;
-  border-radius: 4px;
-  color: var(--text-main);
-  font-size: 0.9rem;
-}
-
-.carpet-card a.details-link:hover {
-  background-color: #ececec;
-  text-decoration: none;
-}
-
-/* --- Details View Layout --- */
-.details-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 30px;
-}
-
-.details-wrapper img {
-  width: 100%;
-  border-radius: 6px;
-  object-fit: cover;
-}
-
-.spec-list {
-  list-style: none;
-  margin-bottom: 20px;
-}
-
-.spec-list li {
-  padding: 8px 0;
-  border-bottom: 1px solid #f0f0f0;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.95rem;
-}
-
-.spec-list li strong {
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-/* --- Order Summary Box --- */
-.summary-box {
-  background: #fdfcf9;
-  border: 1px solid #ede8de;
-  border-radius: 6px;
-  padding: 16px;
-  margin: 20px 0;
-}
-
-.summary-box h3 {
-  font-size: 1rem;
-  margin-bottom: 12px;
-}
-
-.summary-box p {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  margin-bottom: 6px;
-}
-
-.summary-box hr {
-  border: 0;
-  border-top: 1px solid #ede8de;
-  margin: 10px 0;
-}
-
-/* --- Orders List --- */
-.order-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 16px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.order-card img {
-  width: 110px;
-  height: 85px;
-  border-radius: 4px;
-  object-fit: cover;
-}
-
-.order-info {
-  flex-grow: 1;
-}
-
-.status-badge {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  background: #eef2f5;
-  color: var(--primary);
-  font-weight: 500;
-}
-
-@media (max-width: 768px) {
-  .details-wrapper {
-    grid-template-columns: 1fr;
-  }
-  .navbar {
+.card-item {
+    background: #fff;
+    width: 300px;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e0e0e0;
+    display: flex;
     flex-direction: column;
-    gap: 12px;
-  }
+}
+
+#imageCarpet img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+#nameOftheCarpet p, #type p, #origin p, #size p, #address p, #phone p {
+    margin: 5px 0;
+    font-size: 15px;
+    color: #555;
+}
+
+#price p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #8c6d46; 
+    margin: 10px 0;
+}
+
+#status p {
+    display: inline-block;
+    background-color: #eef2f5;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 10px;
+}
+
+#orderID {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+#CarpetsLink a {
+    display: block;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+    color: #333;
+}
+
+#CarpetsLink a:hover {
+    background-color: #e2e2e2;
+    text-decoration: none;
+}
+
+#thickness, #material, #fixedLength, #fixedWidth, #stockQuantity, #isAvailable {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 5px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+#edit-button-admin {
+    text-align: center;
+    margin: 20px;
 }
