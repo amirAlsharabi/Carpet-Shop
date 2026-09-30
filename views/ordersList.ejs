@@ -16,35 +16,41 @@
             <% for (let myOrders of Order) { %>
                 <div class="card-item">
                     <div id="imageCarpet">
-                        <% if (myOrders.carpet) { %>
-                            <img src="<%= myOrders.carpet.imageUrl.replace(/\\/g, '/') %>" alt="<%= myOrders.carpet.name %>">
-                        <% } %>
+                        <% if (myOrders.carpet && myOrders.carpet.imageUrl) { %>
+                            <img src="/uploads/<%= myOrders.carpet.imageUrl.replace(/\\/g, '/').split('uploads/').pop() %>"
+                                alt="<%= myOrders.carpet.name %>">
+                            <% } %>
                     </div>
-                    
-                    <div id="orderID" style="font-size: 13px; color: #888; margin-top: 12px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
-                        <strong>Order #:</strong> <%= myOrders._id %>
+
+                    <div id="orderID"
+                        style="font-size: 13px; color: #888; margin-top: 12px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;">
+                        <strong>Order #:</strong>
+                        <%= myOrders._id %>
                     </div>
-                    
+
                     <div id="nameOftheCarpet">
-                        <p>Carpet name: <%= myOrders.carpet ? myOrders.carpet.name : 'Unknown' %></p>
+                        <p>Carpet name: <%= myOrders.carpet ? myOrders.carpet.name : 'Unknown' %>
+                        </p>
                     </div>
 
                     <div id="type">
-                        <p>Carpet type: <%= myOrders.orderType %></p>
+                        <p>Carpet type: <%= myOrders.orderType %>
+                        </p>
                     </div>
-                    
+
                     <div id="price">
                         <p>Service Fee: <%= myOrders.serviceFee.toFixed(2) %> BD</p>
                         <p>total price: <%= myOrders.totalPrice.toFixed(2) %> BD</p>
                     </div>
-                    
+
                     <div id="status">
-                        <p>order status: <%= myOrders.status %></p>
+                        <p>order status: <%= myOrders.status %>
+                        </p>
                     </div>
-                    
+
                     <a href="/orders/<%= myOrders._id %>">See Details</a>
                 </div>
-            <% } %>
+                <% } %>
         </div>
 </body>
 

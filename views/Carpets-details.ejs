@@ -10,179 +10,199 @@
 
 <body>
     <%- include('partials/navbar') %>
-    <h1>Carpet Details</h1>
+        <h1>Carpet Details</h1>
 
-    <div class="details-container">
-        
-        <div id="imageCarpet">
-            <img src="<%= foundCarpet.imageUrl %>" alt="<%= foundCarpet.name %>">
-        </div>
-        
-        <div id="nameOftheCarpet">
-            <p>Name: <%= foundCarpet.name %></p>
-        </div>
-        
-        <div id="type">
-            <p>Type: <%= foundCarpet.type %></p>
-        </div>
-        
-        <div id="origin">
-            <p>Origin: <%= foundCarpet.origin %></p>
-        </div>
-        
-        <div id="thickness">
-            <p>Thickness: <%= foundCarpet.thickness %> MM</p>
-        </div>
-        
-        <div id="material">
-            <p>Material: <%= foundCarpet.material %></p>
-        </div>
-        
-        <div id="fixedLength">
-            <p>Fixed Length: <%= foundCarpet.fixedLength %></p>
-        </div>
-        
-        <div id="fixedWidth">
-            <p>Fixed Width: <%= foundCarpet.fixedWidth %></p>
-        </div>
-        
-        <div id="stockQuantity">
-            <p>Stock Quantity: <%= foundCarpet.stockQuantity %></p>
-        </div>
-        
-        <div id="price">
-            <p>Price: <%= foundCarpet.price %> BD</p>
-        </div>
-        
-        <div id="isAvailable">
-            <p>Is Available: <%= foundCarpet.isAvailable ? "YES" : "NO" %></p>
-        </div>
+        <div class="details-container">
 
-        <div id="edit-button-admin" style="margin-top: 15px;">
-            <% if( user && user.role==="admin" ){ %>
-                <a href="/carpets/<%= foundCarpet._id %>/edit" style="background-color: #2c3e50; color: white; padding: 8px 15px; border-radius: 4px;">Edit Carpet</a>
-            <% } %>
-        </div>
+            <div id="imageCarpet">
+                <% if (foundCarpet && foundCarpet.imageUrl) { %>
+                    <img src="/uploads/<%= foundCarpet.imageUrl.replace(/\\/g, '/').split('uploads/').pop() %>"
+                        alt="<%= foundCarpet.name %>">
+                    <% } %>
+            </div>
 
-        <hr style="margin: 30px 0; border-top: 1px solid #eaeaea;">
+            <div id="nameOftheCarpet">
+                <p>Name: <%= foundCarpet.name %>
+                </p>
+            </div>
 
-        <% if (user) { %>
-            <h2 style="margin-top: 0;">Order This Carpet</h2>
+            <div id="type">
+                <p>Type: <%= foundCarpet.type %>
+                </p>
+            </div>
 
-            <form action="/orders" method="POST" style="box-shadow: none; border: none; padding: 0; margin: 0; max-width: 100%;">
-                <input type="hidden" name="carpet" value="<%= foundCarpet._id %>">
-                <input type="hidden" name="orderType" value="<%= foundCarpet.type %>">
+            <div id="origin">
+                <p>Origin: <%= foundCarpet.origin %>
+                </p>
+            </div>
 
-                <% if (foundCarpet.type === 'custom_meter') { %>
-                    <label for="length">Length (meters):</label>
-                    <input type="number" step="0.1" name="length" id="length" required>
+            <div id="thickness">
+                <p>Thickness: <%= foundCarpet.thickness %> MM</p>
+            </div>
 
-                    <label for="width">Width (meters):</label>
-                    <input type="number" step="0.1" name="width" id="width" required>
+            <div id="material">
+                <p>Material: <%= foundCarpet.material %>
+                </p>
+            </div>
+
+            <div id="fixedLength">
+                <p>Fixed Length: <%= foundCarpet.fixedLength %>
+                </p>
+            </div>
+
+            <div id="fixedWidth">
+                <p>Fixed Width: <%= foundCarpet.fixedWidth %>
+                </p>
+            </div>
+
+            <div id="stockQuantity">
+                <p>Stock Quantity: <%= foundCarpet.stockQuantity %>
+                </p>
+            </div>
+
+            <div id="price">
+                <p>Price: <%= foundCarpet.price %> BD</p>
+            </div>
+
+            <div id="isAvailable">
+                <p>Is Available: <%= foundCarpet.isAvailable ? "YES" : "NO" %>
+                </p>
+            </div>
+
+            <div id="edit-button-admin" style="margin-top: 15px;">
+                <% if( user && user.role==="admin" ){ %>
+                    <a href="/carpets/<%= foundCarpet._id %>/edit"
+                        style="background-color: #2c3e50; color: white; padding: 8px 15px; border-radius: 4px;">Edit
+                        Carpet</a>
+                    <% } %>
+            </div>
+
+            <hr style="margin: 30px 0; border-top: 1px solid #eaeaea;">
+
+            <% if (user) { %>
+                <h2 style="margin-top: 0;">Order This Carpet</h2>
+
+                <form action="/orders" method="POST"
+                    style="box-shadow: none; border: none; padding: 0; margin: 0; max-width: 100%;">
+                    <input type="hidden" name="carpet" value="<%= foundCarpet._id %>">
+                    <input type="hidden" name="orderType" value="<%= foundCarpet.type %>">
+
+                    <% if (foundCarpet.type==='custom_meter' ) { %>
+                        <label for="length">Length (meters):</label>
+                        <input type="number" step="0.1" name="length" id="length" required>
+
+                        <label for="width">Width (meters):</label>
+                        <input type="number" step="0.1" name="width" id="width" required>
+                        <% } else { %>
+                            <p style="font-weight: bold; margin-bottom: 15px;">Dimensions: <%= foundCarpet.fixedLength
+                                    %>m x <%= foundCarpet.fixedWidth %>m</p>
+                            <input type="hidden" name="length" id="length" value="<%= foundCarpet.fixedLength %>">
+                            <input type="hidden" name="width" id="width" value="<%= foundCarpet.fixedWidth %>">
+                            <% } %>
+
+                                <div id="edging" style="margin: 15px 0;">
+                                    <label style="display: inline;">
+                                        <input type="checkbox" name="edgingNeeded" id="edgingNeeded">
+                                        Border Edging
+                                    </label>
+                                </div>
+
+                                <div id="homeFixing" style="margin: 15px 0;">
+                                    <label style="display: inline;">
+                                        <input type="checkbox" name="installationNeeded" id="installationNeeded">
+                                        Home Installation
+                                    </label>
+                                </div>
+
+                                <label for="phone">Phone Number:</label>
+                                <input type="text" name="phone" id="phone" required>
+
+                                <label for="deliveryAddress">Delivery Address:</label>
+                                <input type="text" name="deliveryAddress" id="deliveryAddress" required>
+
+                                <div
+                                    style="background: #fcfcfc; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #eee;">
+                                    <h3 style="margin-top: 0; text-align: left;">Order Summary</h3>
+                                    <p style="margin: 5px 0;">Total Area: <strong id="displayArea">0</strong> m²</p>
+                                    <p style="margin: 5px 0;">Base Carpet Price: <strong
+                                            id="displayBasePrice">0.00</strong> BD</p>
+                                    <p style="margin: 5px 0;">Extra Services Fee: <strong
+                                            id="displayServiceFee">0.00</strong> BD</p>
+                                    <hr style="margin: 10px 0; border-top: 1px solid #ddd;">
+                                    <h4 style="margin: 5px 0; color: #8c6d46; font-size: 18px;">Estimated Total: <strong
+                                            id="displayTotal">0.00</strong> BD</h4>
+                                </div>
+
+                                <button type="submit">Confirm & Place Order</button>
+                </form>
+
                 <% } else { %>
-                    <p style="font-weight: bold; margin-bottom: 15px;">Dimensions: <%= foundCarpet.fixedLength %>m x <%= foundCarpet.fixedWidth %>m</p>
-                    <input type="hidden" name="length" id="length" value="<%= foundCarpet.fixedLength %>">
-                    <input type="hidden" name="width" id="width" value="<%= foundCarpet.fixedWidth %>">
-                <% } %>
+                    <p style="text-align: center;"><a href="/auth/sign-in">Sign in</a> to customize and order this
+                        carpet.</p>
+                    <% } %>
 
-                <div id="edging" style="margin: 15px 0;">
-                    <label style="display: inline;">
-                        <input type="checkbox" name="edgingNeeded" id="edgingNeeded">
-                        Border Edging
-                    </label>
-                </div>
+                        <script>
+                            const unitPrice = Number("<%= foundCarpet.price %>");
+                            const carpetType = "<%= foundCarpet.type %>";
+                            const defaultLength = Number("<%= foundCarpet.fixedLength || 0 %>");
+                            const defaultWidth = Number("<%= foundCarpet.fixedWidth || 0 %>");
 
-                <div id="homeFixing" style="margin: 15px 0;">
-                    <label style="display: inline;">
-                        <input type="checkbox" name="installationNeeded" id="installationNeeded">
-                        Home Installation
-                    </label>
-                </div>
+                            const lengthInput = document.getElementById("length");
+                            const widthInput = document.getElementById("width");
+                            const installCheckbox = document.getElementById("installationNeeded");
+                            const edgingCheckbox = document.getElementById("edgingNeeded");
 
-                <label for="phone">Phone Number:</label>
-                <input type="text" name="phone" id="phone" required>
+                            const displayArea = document.getElementById("displayArea");
+                            const displayBasePrice = document.getElementById("displayBasePrice");
+                            const displayServiceFee = document.getElementById("displayServiceFee");
+                            const displayTotal = document.getElementById("displayTotal");
 
-                <label for="deliveryAddress">Delivery Address:</label>
-                <input type="text" name="deliveryAddress" id="deliveryAddress" required>
+                            function calculatePrice() {
+                                let length = defaultLength;
+                                let width = defaultWidth;
 
-                <div style="background: #fcfcfc; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #eee;">
-                    <h3 style="margin-top: 0; text-align: left;">Order Summary</h3>
-                    <p style="margin: 5px 0;">Total Area: <strong id="displayArea">0</strong> m²</p>
-                    <p style="margin: 5px 0;">Base Carpet Price: <strong id="displayBasePrice">0.00</strong> BD</p>
-                    <p style="margin: 5px 0;">Extra Services Fee: <strong id="displayServiceFee">0.00</strong> BD</p>
-                    <hr style="margin: 10px 0; border-top: 1px solid #ddd;">
-                    <h4 style="margin: 5px 0; color: #8c6d46; font-size: 18px;">Estimated Total: <strong id="displayTotal">0.00</strong> BD</h4>
-                </div>
+                                if (carpetType === "custom_meter") {
+                                    length = Number(lengthInput ? lengthInput.value : 0);
+                                    width = Number(widthInput ? widthInput.value : 0);
+                                }
 
-                <button type="submit">Confirm & Place Order</button>
-            </form>
+                                const totalArea = length * width;
 
-        <% } else { %>
-            <p style="text-align: center;"><a href="/auth/sign-in">Sign in</a> to customize and order this carpet.</p>
-        <% } %>
+                                let fixingPrice = 0;
+                                let edgingPrice = 0;
 
-        <script>
-            const unitPrice = Number("<%= foundCarpet.price %>");
-            const carpetType = "<%= foundCarpet.type %>";
-            const defaultLength = Number("<%= foundCarpet.fixedLength || 0 %>");
-            const defaultWidth = Number("<%= foundCarpet.fixedWidth || 0 %>");
+                                if (installCheckbox && installCheckbox.checked) {
+                                    fixingPrice = totalArea * 0.4;
+                                }
+                                if (edgingCheckbox && edgingCheckbox.checked) {
+                                    edgingPrice = (length + width) * 2;
+                                }
 
-            const lengthInput = document.getElementById("length");
-            const widthInput = document.getElementById("width");
-            const installCheckbox = document.getElementById("installationNeeded");
-            const edgingCheckbox = document.getElementById("edgingNeeded");
+                                const fee = fixingPrice + edgingPrice;
 
-            const displayArea = document.getElementById("displayArea");
-            const displayBasePrice = document.getElementById("displayBasePrice");
-            const displayServiceFee = document.getElementById("displayServiceFee");
-            const displayTotal = document.getElementById("displayTotal");
+                                let basePrice = 0;
+                                if (carpetType === "custom_meter") {
+                                    basePrice = totalArea * unitPrice;
+                                } else {
+                                    basePrice = unitPrice;
+                                }
 
-            function calculatePrice() {
-                let length = defaultLength;
-                let width = defaultWidth;
+                                const totalPrice = basePrice + fee;
 
-                if (carpetType === "custom_meter") {
-                    length = Number(lengthInput ? lengthInput.value : 0);
-                    width = Number(widthInput ? widthInput.value : 0);
-                }
+                                if (displayArea) displayArea.innerText = totalArea.toFixed(2);
+                                if (displayBasePrice) displayBasePrice.innerText = basePrice.toFixed(2);
+                                if (displayServiceFee) displayServiceFee.innerText = fee.toFixed(2);
+                                if (displayTotal) displayTotal.innerText = totalPrice.toFixed(2);
+                            }
 
-                const totalArea = length * width;
+                            if (lengthInput) lengthInput.addEventListener("input", calculatePrice);
+                            if (widthInput) widthInput.addEventListener("input", calculatePrice);
+                            if (installCheckbox) installCheckbox.addEventListener("change", calculatePrice);
+                            if (edgingCheckbox) edgingCheckbox.addEventListener("change", calculatePrice);
 
-                let fixingPrice = 0;
-                let edgingPrice = 0;
-
-                if (installCheckbox && installCheckbox.checked) {
-                    fixingPrice = totalArea * 0.4;
-                }
-                if (edgingCheckbox && edgingCheckbox.checked) {
-                    edgingPrice = (length + width) * 2;
-                }
-
-                const fee = fixingPrice + edgingPrice;
-
-                let basePrice = 0;
-                if (carpetType === "custom_meter") {
-                    basePrice = totalArea * unitPrice;
-                } else {
-                    basePrice = unitPrice;
-                }
-
-                const totalPrice = basePrice + fee;
-
-                if(displayArea) displayArea.innerText = totalArea.toFixed(2);
-                if(displayBasePrice) displayBasePrice.innerText = basePrice.toFixed(2);
-                if(displayServiceFee) displayServiceFee.innerText = fee.toFixed(2);
-                if(displayTotal) displayTotal.innerText = totalPrice.toFixed(2);
-            }
-
-            if (lengthInput) lengthInput.addEventListener("input", calculatePrice);
-            if (widthInput) widthInput.addEventListener("input", calculatePrice);
-            if (installCheckbox) installCheckbox.addEventListener("change", calculatePrice);
-            if (edgingCheckbox) edgingCheckbox.addEventListener("change", calculatePrice);
-
-            calculatePrice();
-        </script>
-    </div> 
+                            calculatePrice();
+                        </script>
+        </div>
 </body>
 
 </html>
